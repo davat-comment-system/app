@@ -4,13 +4,13 @@ export interface Comment {
     _id: string;
     content: string;
 
-    userId?: string;
     user?: User;
 
     likes?: string[];
-    likesCount?: number;
+    likeCount?: number;
+    isLiked?: boolean;
 
     replies?: Comment[];
-    parentId?: string;
+    parent?: Comment;
     createdAt?: Date;
 }

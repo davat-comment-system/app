@@ -1,5 +1,6 @@
 import axios from "axios";
 import {addToast} from "@heroui/react";
+import { store } from '@/store';
 
 
 const config = {
@@ -16,10 +17,13 @@ const config = {
 }
 
 
-// Core without auth
 const axiosCore = () => {
     const a = axios.create(config)
+    const selectedUser = store.getState().user.selectedUser
     a.interceptors.request.use((config) => {
+        if (selectedUser) {
+            config.headers['x-user'] = selectedUser._id;
+        }
         return config
     })
     a.interceptors.response.use(

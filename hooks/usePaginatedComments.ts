@@ -8,7 +8,7 @@ export const usePaginatedComments = () => {
         return `/comment?page=${pageIndex + 1}&limit=${PAGE_SIZE}`;
     };
 
-    const { data, error, size, setSize, isValidating } = useSWRInfinite(getKey);
+    const { data, error, size, setSize, isLoading, isValidating, mutate } = useSWRInfinite(getKey);
 
     const comments = data ? data.flat() : [];
     const isLoadingInitialData = !data && !error;
@@ -18,9 +18,11 @@ export const usePaginatedComments = () => {
     return {
         comments,
         error,
+        isLoading,
         isLoadingMore,
         isReachingEnd,
         loadMore: () => setSize(size + 1),
-        isValidating
+        isValidating,
+        reload: mutate,
     };
 };
