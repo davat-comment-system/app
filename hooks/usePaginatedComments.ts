@@ -1,9 +1,6 @@
 import useSWRInfinite from 'swr/infinite';
-import axios from 'axios';
-
 const PAGE_SIZE = 10;
 
-const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
 export const usePaginatedComments = () => {
     const getKey = (pageIndex: number, previousPageData: any) => {
@@ -11,7 +8,7 @@ export const usePaginatedComments = () => {
         return `/comment?page=${pageIndex + 1}&limit=${PAGE_SIZE}`;
     };
 
-    const { data, error, size, setSize, isValidating } = useSWRInfinite(getKey, fetcher);
+    const { data, error, size, setSize, isValidating } = useSWRInfinite(getKey);
 
     const comments = data ? data.flat() : [];
     const isLoadingInitialData = !data && !error;

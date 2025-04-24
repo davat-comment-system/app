@@ -14,7 +14,7 @@ const SWRProvider = (props: SWRProviderProps) => {
     const {children} = props
 
 
-    const configuration:  SWRConfiguration = {
+    const configuration: SWRConfiguration = {
         fetcher: (url) => {
             return axiosCore().get(url)
         },
