@@ -1,7 +1,7 @@
 "use client"
 
 import React, {useEffect} from "react";
-import {Button, Card, CardBody, CardFooter, CardHeader, Divider, ScrollShadow, Spinner} from "@heroui/react";
+import {Button, Card, CardBody, CardHeader, Divider, ScrollShadow, Spinner} from "@heroui/react";
 import {CommentItem} from "@/components/CommentItem";
 import {CommentForm} from "@/components/CommentForm";
 import {NoComment} from "@/components/NoComment";
@@ -32,7 +32,9 @@ export function CommentsList() {
             <Divider/>
             <CardBody className="p-0 gap-3">
                 <div className="p-4 flex flex-col gap-3 shrink-0">
-                    {!comments.length && (<NoComment/>)}
+                    {(!isLoading && !comments.length) && (
+                        <NoComment/>
+                    )}
                     <CommentForm
                         reloadList={reload}
                     />

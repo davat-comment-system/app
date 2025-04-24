@@ -20,6 +20,7 @@ import {useAppDispatch, useAppSelector} from "@/hooks/useStore";
 
 export function UserSwitch() {
 
+
     const {data, error, isLoading} = useSWR<User[]>('/user')
     const dispatch = useAppDispatch();
     const selectedUser = useAppSelector((state) => state.user.selectedUser);
@@ -49,6 +50,9 @@ export function UserSwitch() {
             return {key: item._id, label: item.fullName};
         })
     }, [data])
+
+
+
 
 
     return (

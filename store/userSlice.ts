@@ -5,8 +5,11 @@ interface UserState {
     selectedUser: User | null;
 }
 
+
+const cUser = typeof window !== 'undefined' ? window.localStorage.getItem("current-user") : null;
+
 const initialState: UserState = {
-    selectedUser: null
+    selectedUser: cUser ? JSON.parse(cUser) : null,
 };
 
 export const userSlice = createSlice({
@@ -15,9 +18,11 @@ export const userSlice = createSlice({
     reducers: {
         setSelectedUser: (state, action: PayloadAction<User>) => {
             state.selectedUser = action.payload;
+            localStorage.setItem("current-user", JSON.stringify(action.payload));
         },
         clearSelectedUser: (state) => {
             state.selectedUser = null;
+            localStorage.removeItem("current-user");
         },
     },
 });
