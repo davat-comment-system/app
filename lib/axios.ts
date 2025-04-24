@@ -1,4 +1,5 @@
 import axios from "axios";
+import {addToast} from "@heroui/react";
 
 
 const config = {
@@ -33,26 +34,8 @@ const axiosCore = () => {
 }
 
 
-// Core with auth
-const axiosCoreWithAuth = () => {
-    const a = axios.create(config)
-    a.interceptors.request.use(async (config) => {
-        // if(session?.accessToken) config.headers.Authorization = `Bearer ${session.accessToken}`
-        return config
-    })
-    a.interceptors.response.use(
-        (response) => {
-            return response.data;
-        },
-        (error) => {
-            return Promise.reject(handleToastError(error))
-        },
-    )
-    return a
-}
 
-
-export {axiosCore, axiosCoreWithAuth}
+export {axiosCore}
 
 
 
@@ -86,8 +69,15 @@ export const handleToastError = (error: ErrorResponse) => {
         messages.push(response?.data?.message || response?.data?.error || `Unknown Error: ${response.status}`);
     }
     // show messages
-    // messages.map(message => toast.error(message || "Unknown Error🥺"));
-
+    for (const msg in messages) {
+        addToast({
+            title: msg,
+            color: "danger",
+            variant: "solid",
+            timeout: 3000,
+            shouldShowTimeoutProgress: true,
+        })
+    }
     return response?.data || null
 };
 

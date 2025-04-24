@@ -21,7 +21,7 @@ const GradientBackground = () => {
     }, []);
 
     return (
-        <div className="fixed inset-0 -z-50 overflow-hidden">
+        <div className="fixed inset-0 z-0 overflow-hidden">
             <div
                 className="absolute inset-0 opacity-30"
                 style={{

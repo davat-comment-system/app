@@ -1,35 +1,59 @@
 "use client"
 
 import React from "react";
-import {Card, CardBody, CardHeader} from "@heroui/react";
-import {Comment} from "@/interfaces/Comment.interface";
+import {Button, Card, CardBody, CardHeader, Divider, ScrollShadow} from "@heroui/react";
 import {CommentItem} from "@/components/CommentItem";
+import {CommentForm} from "@/components/CommentForm";
+import {NoComment} from "@/components/NoComment";
+import {usePaginatedComments} from "@/hooks/usePaginatedComments";
+import {useAppSelector} from "@/hooks/useStore";
+import {NotLogin} from "@/components/NotLogin";
 
-export type CommentsPropsType = {
-    comments: Comment[];
-}
 
-export function Comments(props: CommentsPropsType) {
+export function Comments() {
 
-    const {comments} = props;
+    const {comments, loadMore, isLoadingMore, isReachingEnd} = usePaginatedComments();
+    const selectedUser = useAppSelector((state) => state.user.selectedUser);
+
+    if (!selectedUser) {
+        return <NotLogin/>
+    }
 
 
     return (
         <Card
             fullWidth
             shadow="md"
-            className=""
+            className="max-h-[calc(100vh-32px)]"
         >
             <CardHeader className="font-bold">
-                Comments (2)
+                Comments {comments.length ? `(${comments.length})` : ""}
             </CardHeader>
-            <CardBody className="overflow-visible py-2 gap-3">
-                {comments.map((comment, index) => (
-                    <CommentItem
-                        key={index}
-                        comment={comment}
-                    />
-                ))}
+            <Divider/>
+            <CardBody className="p-0 gap-3">
+                {!comments.length && (<NoComment/>)}
+                <CommentForm/>
+                {!!comments.length && (
+                    <ScrollShadow
+                        hideScrollBar
+                        className="p-4 flex flex-col gap-3"
+                    >
+                        {comments.map((comment) => (
+                            <CommentItem
+                                key={comment._id}
+                                comment={comment}
+                            />
+                        ))}
+                        {isLoadingMore && (
+                            <Button
+                                variant="light"
+                                color="secondary"
+                            >
+                                More ...
+                            </Button>
+                        )}
+                    </ScrollShadow>
+                )}
             </CardBody>
         </Card>
     );

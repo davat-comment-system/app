@@ -5,6 +5,7 @@ import React from "react";
 import * as rootConfig from "@/config/root.config";
 import {Providers} from "@/app/providers";
 import GradientBackground from "@/components/GradientBackground";
+import {UserSwitch} from "@/components/UserSwitch";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -29,11 +30,14 @@ export default function RootLayout({children}: RootLayoutPropsType) {
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased light`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen selection:bg-secondary selection:text-white`}
             >
                 <Providers>
-                    {/*<GradientBackground />*/}
-                    {children}
+                    <GradientBackground />
+                    <main className="h-full">
+                        {children}
+                    </main>
+                    <UserSwitch/>
                 </Providers>
             </body>
         </html>
