@@ -1,7 +1,6 @@
 import React, {ReactNode} from "react";
-import {Input, Textarea, Button} from "@heroui/react";
+import {Input, Textarea} from "@heroui/react";
 import {Control, FieldValues, Path, useController} from "react-hook-form";
-import {EyeFilledIcon, EyeSlashFilledIcon} from "@heroui/shared-icons";
 
 
 export type CustomInputProps<T extends FieldValues> = {

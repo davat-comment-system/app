@@ -3,7 +3,7 @@
 import React from "react";
 import {useAppSelector} from "@/hooks/useStore";
 import {NotLogin} from "@/components/NotLogin";
-import {CommentsList} from "@/components/CommensList";
+import {CommentsList} from "@/components/CommentsList";
 
 
 export function Comments() {
