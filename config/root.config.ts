@@ -4,7 +4,8 @@ export const post =  {
     title: "🚀 Say hello to the future of smart invitations – Davat.co 🌐",
     content: `Tired of juggling spreadsheets, RSVPs, and endless follow-ups? Welcome to Davat.co – the all-in-one smart event invitation platform built for effortless planning and unforgettable experiences.<br/>
 <br/>
-✨ Whether you’re organizing a wedding, corporate event, or private gathering, Davat.co gives you the power to: ✅ Create beautiful digital invitations in minutes<br/>
+✨ Whether you’re organizing a wedding, corporate event, or private gathering, Davat.co gives you the power to:<br/>
+✅ Create beautiful digital invitations in minutes<br/>
 ✅ Manage RSVPs in real time<br/>
 ✅ Customize guest lists with ease<br/>
 ✅ Automate reminders and follow-ups<br/>
