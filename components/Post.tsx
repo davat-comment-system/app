@@ -39,9 +39,7 @@ export function Post(props: PostPropsType) {
                     </div>
                 )}
                 <div className="flex flex-col gap-2">
-                    <p className="text-sm text-wrap box-content text-justify leading-relaxed">
-                        {content}
-                    </p>
+                    <p className="text-sm text-wrap box-content text-justify leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />
                     <div className="font-bold text-sm flex gap-1 flex-wrap text-blue-400">
                         {tags.map((tag, idx) => (
                             <span key={idx}>{"#" + tag}</span>
